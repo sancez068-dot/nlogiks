@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ресторан — Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eee9df;--ink:#171714;--muted:#716d63;--line:rgba(23,23,20,.18);
+  --paper:#f7f3ea;--dark:#1a1a17;--accent:#9d3e2f;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+.header{position:fixed;z-index:20;top:0;left:0;right:0;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;color:#fff;background:linear-gradient(#111b,transparent);mix-blend-mode:normal}
+.logo{font-family:"Cormorant Garamond",serif;font-size:31px;letter-spacing:.14em;font-weight:600}
+.nav{display:flex;gap:28px;font-size:12px;text-transform:uppercase;letter-spacing:.13em}
+.nav a{opacity:.9}.nav a:hover{opacity:1}
+.lang{border:1px solid #ffffff55;background:#1117;color:#fff;border-radius:99px;padding:9px 13px;cursor:pointer;font-size:11px;letter-spacing:.12em}
+.hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#181713}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#111b,#1112 60%,#1117),linear-gradient(0deg,#111b 0%,transparent 55%),url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=88") center/cover}
+.hero-inner{position:relative;z-index:1;width:100%;padding:0 6vw 7vh;color:#fff}
+.kicker{font:11px "DM Mono",monospace;letter-spacing:.25em;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font:clamp(76px,15vw,230px);font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.72;margin:0;letter-spacing:-.055em}
+.hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-top:38px}
+.hero-copy{max-width:490px;font-size:15px;line-height:1.7;color:#eee}
+.cta{display:inline-flex;align-items:center;gap:14px;background:#f4efe5;color:#171714;padding:15px 21px;border-radius:2px;text-transform:uppercase;font-size:11px;letter-spacing:.14em;font-weight:700}
+.cta:after{content:"↗";font-size:17px}
+.scroll{font:10px "DM Mono",monospace;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;opacity:.7}
+.section{padding:120px 6vw}.grid-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:8vw}
+.eyebrow{font:10px "DM Mono",monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.display{font:clamp(50px,7vw,100px);font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.9;margin:0;letter-spacing:-.04em}
+.lead{font-size:17px;line-height:1.8;max-width:520px;color:#4f4b43}
+.statline{display:flex;gap:45px;margin-top:40px;border-top:1px solid var(--line);padding-top:22px}
+.stat b{font:28px "Cormorant Garamond",serif}.stat span{display:block;font:9px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.food{padding:0 3vw 120px}.food-head{display:flex;justify-content:space-between;align-items:end;padding:0 3vw 25px}
+.food-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:12px}
+.food-card{position:relative;min-height:520px;overflow:hidden;background:#ddd}
+.food-card.small{min-height:360px}.food-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.food-card:hover img{transform:scale(1.04)}
+.food-info{position:absolute;left:0;right:0;bottom:0;padding:25px;color:#fff;background:linear-gradient(transparent,#111c)}
+.food-info h3{font:34px "Cormorant Garamond",serif;margin:0}.food-info p{font-size:11px;opacity:.8;margin:5px 0}
+.menu-band{background:var(--dark);color:#f5f0e6;padding:110px 6vw}
+.menu-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:9vw}
+.menu-list{border-top:1px solid #fff3}
+.menu-row{display:grid;grid-template-columns:1fr auto;gap:25px;padding:25px 0;border-bottom:1px solid #fff2}
+.menu-row h3{font:30px "Cormorant Garamond",serif;margin:0}.menu-row p{font-size:11px;color:#aaa;margin:7px 0 0;line-height:1.5}.price{font:18px "DM Mono",monospace}
+.rooms{padding:120px 6vw}.room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:55px}
+.room{border:1px solid var(--line);background:var(--paper)}.room img{width:100%;height:330px;object-fit:cover}.room-body{padding:24px}.room-body h3{font:36px "Cormorant Garamond",serif;margin:0 0 8px}.room-body p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}.room-meta{font:9px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;margin-top:20px}
+.booking{background:#cfc5b3;padding:120px 6vw}.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:9vw}.booking h2{font:clamp(58px,8vw,110px) "Cormorant Garamond",serif;line-height:.84;font-weight:500;margin:0}
+.form{display:grid;gap:12px}.form input,.form select{width:100%;border:0;border-bottom:1px solid #17171466;background:transparent;padding:17px 0;color:var(--ink);outline:0}.form input::placeholder{color:#666157}.form button{margin-top:18px;justify-self:start;border:0;background:var(--ink);color:#fff;padding:16px 24px;text-transform:uppercase;letter-spacing:.15em;font-size:10px;cursor:pointer}
+.contact{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:80px;padding-top:35px}.contact p{font-size:12px;line-height:1.8;color:var(--muted)}
+.footer{background:#11110f;color:#eae5da;padding:55px 6vw 80px;display:flex;justify-content:space-between;align-items:end;gap:30px}.footer-logo{font:55px "Cormorant Garamond",serif}.watermark{position:fixed;z-index:50;right:14px;bottom:14px;background:#111;color:#fff;padding:9px 13px;border-radius:999px;font-size:10px;box-shadow:0 8px 30px #0003}.watermark svg{width:13px;height:13px;vertical-align:-2px;margin-right:5px;fill:#fff}
+.toast{position:fixed;z-index:100;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;background:#171714;color:#fff;padding:13px 18px;font-size:12px;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(25px);transition:.8s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){
+ .header{height:65px;padding:0 5vw}.nav{display:none}.logo{font-size:25px}
+ .hero-inner{padding:0 6vw 6vh}.hero h1{font-size:25vw}.hero-bottom{display:block}.scroll{display:none}
+ .section,.rooms,.booking,.menu-band{padding:80px 6vw}.grid-intro,.booking-grid,.menu-layout{grid-template-columns:1fr;gap:45px}
+ .food{padding:0 4vw 80px}.food-grid{grid-template-columns:1fr 1fr}.food-card{min-height:400px}.food-card:first-child{grid-column:1/-1}.room-grid{grid-template-columns:1fr}.room img{height:270px}
+ .contact,.footer{display:block}.footer-logo{margin-bottom:25px}
+}
+
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{overflow:hidden}
+.app-pages{height:100dvh;min-height:100vh;position:relative;overflow:hidden}
+.app-page{position:absolute;inset:0;width:100%;max-width:100%;overflow-y:auto;overflow-x:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translateX(28px);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+.app-page.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0)}
+.app-page.leaving{transform:translateX(-28px)}
+.app-page::-webkit-scrollbar{width:5px}.app-page::-webkit-scrollbar-thumb{background:#aaa}
+.spa-home{min-height:100%;overflow:hidden}
+.page-hero{min-height:58vh;padding:150px 6vw 80px;background:var(--dark);color:#f5f0e6;display:flex;align-items:flex-end}
+.page-hero h1{font:clamp(70px,12vw,170px) "Cormorant Garamond",serif;line-height:.75;font-weight:500;margin:0;letter-spacing:-.05em}
+.page-wrap{padding:100px 6vw}.page-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw}
+.page-copy{font-size:17px;line-height:1.8;color:#514d45;max-width:620px}
+.page-list{border-top:1px solid var(--line)}
+.page-list .menu-row{padding:28px 0}
+.back-home{font:10px "DM Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:#aaa;margin-bottom:28px;display:inline-block}
+.nav a.active-nav{text-decoration:underline;text-underline-offset:6px}
+@media(max-width:800px){.page-hero{min-height:48vh;padding:130px 6vw 65px}.page-wrap{padding:75px 6vw}.page-grid{grid-template-columns:1fr;gap:45px}.nav{display:none}}
+
+.mobile-nav{display:none}
+@media(max-width:800px){.mobile-nav{position:fixed;z-index:40;bottom:8px;left:8px;right:8px;width:auto;max-width:calc(100vw - 16px);display:flex;justify-content:space-around;padding:11px 7px;background:#171714ee;color:#fff;font:9px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px)}.mobile-nav a{opacity:.75}.mobile-nav a:first-child{opacity:1}}
+
+.watermark-wrap{position:fixed;z-index:80;right:14px;bottom:14px;display:flex;align-items:center;gap:5px;touch-action:none;user-select:none}
+.watermark-wrap.dragging{cursor:grabbing}
+.watermark-wrap .watermark{position:static;display:flex;align-items:center;background:#111;color:#fff;padding:9px 13px;border-radius:999px;font-size:10px;box-shadow:0 8px 30px #0003;cursor:pointer;white-space:nowrap}
+.watermark-wrap .watermark svg{width:13px;height:13px;vertical-align:-2px;margin-right:5px;fill:#fff}
+.wm-drag,.wm-reset{width:30px;height:30px;border:1px solid #ffffff44;background:#111;color:#fff;border-radius:50%;cursor:pointer;font-size:13px;display:grid;place-items:center;box-shadow:0 5px 18px #0003}
+.wm-drag{cursor:grab}
+.wm-drag:active{cursor:grabbing}
+.wm-reset{display:none}
+.watermark-wrap.dragging .wm-reset{display:grid}
+@media(max-width:800px){
+ .watermark-wrap{right:10px;bottom:66px;max-width:calc(100vw - 20px)}
+ .watermark-wrap .watermark{font-size:9px;padding:8px 11px}
+ .wm-drag,.wm-reset{width:28px;height:28px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#">Ресторан</a>
+  <nav class="nav">
+    <a href="#about" data-i="about">About</a>
+    <a href="#menu" data-i="menu">Menu</a>
+    <a href="#events" data-i="events">Events</a>
+    <a href="#booking" data-i="booking">Booking</a>
+  </nav>
+  <button class="lang" id="lang">EN / UA</button>
+</header>
+
+<div class="mobile-nav">
+<a href="#home">Ресторан</a><a href="#about" data-i="about">About</a><a href="#menu" data-i="menu">Menu</a><a href="#events" data-i="events">Events</a><a href="#booking" data-i="booking">Booking</a>
+</div>
+
+
+<div class="app-pages">
+
+<section class="app-page active" data-page="home" id="home">
+<section class="hero spa-home">
+  <div class="hero-inner">
+    <div class="kicker" data-i="kicker">Restaurant · Odesa</div>
+    <h1>Ресторан</h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-copy" data-i="heroCopy">A dining room for long evenings, private celebrations and the kind of dinner you remember the next morning.</p>
+        <a class="cta" href="#booking" data-i="heroCta">Reserve a table</a>
+      </div>
+      <div class="scroll" data-i="scroll">Scroll to discover</div>
+    </div>
+  </div>
+</section>
+</section>
+
+<section class="app-page" data-page="about" id="about">
+<section class="page-hero"><div><h1 data-i="aboutPageTitle">THE PLACE</h1></div></section>
+<section class="page-wrap reveal"><div class="page-grid">
+<div><div class="eyebrow" data-i="aboutEyebrow">01 / About Ресторан</div><h2 class="display" data-i="aboutBig">A room made<br>for people.</h2></div>
+<div><p class="page-copy" data-i="aboutLong">Ресторан is imagined as a modern dining room in Odesa: honest ingredients, warm light, careful service and enough space for a conversation to last longer than the meal.</p>
+<p class="page-copy" data-i="aboutLong2">The visual language is deliberately calm. Natural textures, large tables, seasonal dishes and private formats make the restaurant suitable for everyday dinners as well as important dates.</p></div>
+</div></section>
+<section class="food"><div class="food-grid">
+<article class="food-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85"></article>
+<article class="food-card small"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=85"></article>
+<article class="food-card small"><img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85"></article>
+</div></section>
+</section>
+
+<section class="app-page" data-page="menu" id="menu">
+<section class="page-hero"><div><h1 data-i="menuPageTitle">MENU</h1></div></section>
+<section class="menu-band"><div class="menu-layout">
+<div><div class="eyebrow" style="color:#aaa" data-i="menuEyebrow">01 / Selected menu</div><h2 class="display" data-i="menuTitle">Simple food.<br>Serious craft.</h2><p class="lead" style="color:#aaa;margin-top:30px" data-i="menuText">A compact selection for the demonstration version.</p></div>
+<div class="page-list">
+<div class="menu-row"><div><h3 data-i="m1">Beef tartare</h3><p data-i="m1p">mustard · capers · toasted brioche</p></div><div class="price">420</div></div>
+<div class="menu-row"><div><h3 data-i="m2">Sea bass</h3><p data-i="m2p">young potatoes · green herbs · lemon</p></div><div class="price">590</div></div>
+<div class="menu-row"><div><h3 data-i="m3">Porcini risotto</h3><p data-i="m3p">parmesan · thyme · black pepper</p></div><div class="price">390</div></div>
+<div class="menu-row"><div><h3 data-i="m4">Burnt cheesecake</h3><p data-i="m4p">sour cream · berry sauce</p></div><div class="price">220</div></div>
+</div></div></section>
+</section>
+
+<section class="app-page" data-page="events" id="events">
+<section class="page-hero"><div><h1 data-i="eventsPageTitle">EVENTS</h1></div></section>
+<section class="rooms"><div class="eyebrow" data-i="eventsEyebrow">01 / Private events</div><h2 class="display" data-i="roomsTitle">Make room<br>for the moment.</h2>
+<div class="room-grid">
+<article class="room"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85"><div class="room-body"><h3 data-i="r1">Main Hall</h3><p data-i="r1p">An elegant space for dinners, birthdays and intimate celebrations.</p><div class="room-meta" data-i="r1m">up to 50 guests</div></div></article>
+<article class="room"><img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=85"><div class="room-body"><h3 data-i="r2">Private Table</h3><p data-i="r2p">A quieter format for family dinners, proposals and business evenings.</p><div class="room-meta" data-i="r2m">up to 12 guests</div></div></article>
+<article class="room"><img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=1200&q=85"><div class="room-body"><h3 data-i="r3">Terrace</h3><p data-i="r3p">Open-air dinners with a slower rhythm and a city atmosphere.</p><div class="room-meta" data-i="r3m">seasonal · open air</div></div></article>
+</div></section>
+</section>
+
+<section class="app-page" data-page="booking" id="booking">
+<section class="page-hero"><div><h1 data-i="bookingPageTitle">BOOKING</h1></div></section>
+<section class="booking" style="margin-top:0"><div class="booking-grid">
+<div><div class="eyebrow" data-i="bookingEyebrow">01 / Reservation</div><h2 data-i="bookTitle">Your table<br>is waiting.</h2>
+<div class="contact"><div><div class="eyebrow" data-i="addressLabel">Odesa · Ukraine</div><p>Deribasivska area<br>Demo address · replace with client data</p></div><div><div class="eyebrow" data-i="hoursLabel">Hours</div><p>Mon–Thu 09:00–22:00<br>Fri–Sun 09:00–23:00</p></div></div></div>
+<form class="form" id="form"><input required placeholder="Your name" data-p="name"><input required type="tel" placeholder="Phone number" data-p="phone"><select><option data-i="guests">Number of guests</option><option>2</option><option>4</option><option>6</option><option>8+</option></select><input type="date"><input type="time"><button type="submit" data-i="send">Request a reservation</button></form>
+</div></section>
+</section>
+</div>
+
+<footer class="footer">
+  <div><div class="footer-logo">Ресторан</div><div class="eyebrow" style="color:#777" data-i="footerText">Restaurant · private dining · events</div></div>
+  <div class="eyebrow" style="color:#777">ODESA / UA</div>
+</footer>
+<div class="watermark-wrap" id="wmWrap">
+  <a class="watermark" id="watermark" href="https://t.me/nlogiks" target="_blank" rel="noopener" aria-label="Замовити сайт через Telegram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 3.4 18.2 20c-.25 1.17-.94 1.46-1.9.91l-5.2-3.83-2.51 2.42c-.28.28-.51.51-1.04.51l.37-5.3 9.65-8.72c.42-.37-.09-.58-.65-.21L5 13.1.02 11.54c-1.08-.34-1.1-1.08.23-1.57L19.68 4.1c.88-.32 1.65.21 1.92-.7z"/></svg>
+    <span>Замовити — @nlogiks</span>
+  </a>
+  <button class="wm-drag" id="wmDrag" type="button" aria-label="Переміщати водянку">↕</button>
+  <button class="wm-reset" id="wmReset" type="button" aria-label="Скинути позицію">↺</button>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const T={
+en:{aboutPageTitle:'THE PLACE',aboutEyebrow:'01 / About Ресторан',aboutBig:'A room made<br>for people.',aboutLong:'Ресторан is imagined as a modern dining room in Odesa: honest ingredients, warm light, careful service and enough space for a conversation to last longer than the meal.',aboutLong2:'The visual language is deliberately calm. Natural textures, large tables, seasonal dishes and private formats make the restaurant suitable for everyday dinners as well as important dates.',menuPageTitle:'MENU',menuEyebrow:'01 / Selected menu',eventsPageTitle:'EVENTS',eventsEyebrow:'01 / Private events',bookingPageTitle:'BOOKING',bookingEyebrow:'01 / Reservation',
+about:"About",menu:"Menu",events:"Events",booking:"Booking",kicker:"Restaurant · Odesa",
+heroCopy:"A dining room for long evenings, private celebrations and the kind of dinner you remember the next morning.",
+heroCta:"Reserve a table",scroll:"Scroll to discover",eyebrow:"01 / The place",
+aboutTitle:"Dinner,<br>with a sense<br>of occasion.",aboutText:"Ресторан is a modern Odesa restaurant built around warm service, seasonal cooking and an atmosphere that works equally well for a quiet dinner or a full celebration.",
+stat1:"seats",stat2:"private formats",stat3:"min to center",eyebrow2:"02 / From the kitchen",foodTitle:"The table.",foodNote:"Seasonal · local · precise",
+dish1:"Open-fire fish",dish1p:"charred vegetables · herbs · citrus",dish2:"Handmade pasta",dish2p:"brown butter · aged cheese",dish3:"Slow evenings",dish3p:"wine · dessert · conversation",
+eyebrow3:"03 / Selected menu",menuTitle:"Simple food.<br>Serious craft.",menuText:"A compact selection for the first version of the menu. Prices and dishes are demo content and can be replaced with the real restaurant menu.",
+m1:"Beef tartare",m1p:"mustard · capers · toasted brioche",m2:"Sea bass",m2p:"young potatoes · green herbs · lemon",m3:"Porcini risotto",m3p:"parmesan · thyme · black pepper",m4:"Burnt cheesecake",m4p:"sour cream · berry sauce",
+eyebrow4:"04 / Private events",roomsTitle:"Make room<br>for the moment.",r1:"Main Hall",r1p:"An elegant space for dinners, birthdays and intimate celebrations.",r1m:"up to 50 guests",r2:"Private Table",r2p:"A quieter format for family dinners, proposals and business evenings.",r2m:"up to 12 guests",r3:"Terrace",r3p:"Open-air dinners with a slower rhythm and a city atmosphere.",r3m:"seasonal · open air",
+eyebrow5:"05 / Reservation",bookTitle:"Your table<br>is waiting.",addressLabel:"Odesa · Ukraine",hoursLabel:"Hours",guests:"Number of guests",send:"Request a reservation",name:"Your name",phone:"Phone number",footerText:"Restaurant · private dining · events",
+toast:"Demo form — no data was sent."
+},
+ua:{aboutPageTitle:'ПРОСТІР',aboutEyebrow:'01 / Про Ресторан',aboutBig:'Простір,<br>створений<br>для людей.',aboutLong:'Ресторан задуманий як сучасний ресторан в Одесі: чесні інгредієнти, тепле світло, уважний сервіс і достатньо часу для розмови, яка може тривати довше за вечерю.',aboutLong2:'Візуальна мова ресторану спокійна. Натуральні текстури, великі столи, сезонні страви та приватні формати підходять і для звичайної вечері, і для важливих дат.',menuPageTitle:'МЕНЮ',menuEyebrow:'01 / Обране меню',eventsPageTitle:'ПОДІЇ',eventsEyebrow:'01 / Приватні події',bookingPageTitle:'БРОНЮВАННЯ',bookingEyebrow:'01 / Резервація',
+about:"Про нас",menu:"Меню",events:"Події",booking:"Бронювання",kicker:"Ресторан · Одеса",
+heroCopy:"Простір для довгих вечорів, приватних свят і тієї самої вечері, яку згадуєш наступного ранку.",
+heroCta:"Забронювати столик",scroll:"Гортайте далі",eyebrow:"01 / Простір",
+aboutTitle:"Вечеря,<br>яка має<br>настрій.",aboutText:"Ресторан — сучасний одеський ресторан із теплим сервісом, сезонною кухнею та атмосферою, що однаково добре підходить для тихої вечері або великого свята.",
+stat1:"місць",stat2:"формати подій",stat3:"хв до центру",eyebrow2:"02 / Із кухні",foodTitle:"До столу.",foodNote:"Сезонно · локально · точно",
+dish1:"Риба з вогню",dish1p:"овочі · зелень · цитрус",dish2:"Домашня паста",dish2p:"коричневе масло · витриманий сир",dish3:"Повільні вечори",dish3p:"вино · десерт · розмова",
+eyebrow3:"03 / Обране меню",menuTitle:"Проста їжа.<br>Серйозна майстерність.",menuText:"Невелика добірка для демонстраційної версії. Страви та ціни можна замінити на реальне меню закладу.",
+m1:"Тартар із яловичини",m1p:"гірчиця · каперси · бріош",m2:"Сібас",m2p:"молода картопля · зелень · лимон",m3:"Різото з білими грибами",m3p:"пармезан · чебрець · чорний перець",m4:"Палений чизкейк",m4p:"сметана · ягідний соус",
+eyebrow4:"04 / Приватні події",roomsTitle:"Створіть простір<br>для моменту.",r1:"Головна зала",r1p:"Елегантний простір для вечерь, днів народження та камерних свят.",r1m:"до 50 гостей",r2:"Приватний стіл",r2p:"Тихіший формат для сімейної вечері, пропозиції або ділової зустрічі.",r2m:"до 12 гостей",r3:"Тераса",r3p:"Вечері просто неба з повільнішим ритмом і міською атмосферою.",r3m:"сезонно · просто неба",
+eyebrow5:"05 / Бронювання",bookTitle:"Ваш столик<br>чекає.",addressLabel:"Одеса · Україна",hoursLabel:"Години роботи",guests:"Кількість гостей",send:"Запит на бронювання",name:"Ваше ім’я",phone:"Номер телефону",footerText:"Ресторан · приватні вечері · події",
+toast:"Демонстраційна форма — дані не надсилаються."
+}};
+let lang=localStorage.getItem("lumen-lang")||"en";
+function render(){
+ const d=T[lang];
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-i]").forEach(el=>{const k=el.dataset.i;if(d[k]!=null)el.innerHTML=d[k]});
+ document.querySelectorAll("[data-p]").forEach(el=>{const k=el.dataset.p;if(d[k]!=null)el.placeholder=d[k]});
+ document.getElementById("lang").textContent=lang==="en"?"EN / UA":"UA / EN";
+}
+document.getElementById("lang").onclick=()=>{lang=lang==="en"?"ua":"en";localStorage.setItem("lumen-lang",lang);render()};
+document.getElementById("form").addEventListener("submit",e=>{e.preventDefault();const t=document.getElementById("toast");t.textContent=T[lang].toast;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")}),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
+render();
+
+const pages=document.querySelectorAll('.app-page');
+let current=location.hash.replace('#','')||'home';
+function showPage(name, push=true){
+  if(!document.querySelector('.app-page[data-page="'+name+'"]')) name='home';
+  pages.forEach(p=>p.classList.toggle('active',p.dataset.page===name));
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active-nav',a.getAttribute('href')==='#'+name));
+  current=name;
+  if(push) history.pushState({page:name},'', '#'+name);
+  const active=document.querySelector('.app-page[data-page="'+name+'"]');
+  if(active) active.scrollTop=0;
+  render();
+}
+document.addEventListener('click',e=>{
+ const a=e.target.closest('a[href^="#"]');
+ if(!a) return;
+ const id=a.getAttribute('href').slice(1);
+ if(document.querySelector('.app-page[data-page="'+id+'"]')){
+   e.preventDefault(); showPage(id,true);
+ }
+});
+window.addEventListener('popstate',()=>showPage(location.hash.replace('#','')||'home',false));
+showPage(current,false);
+
+// Draggable watermark overlay.
+(function(){
+  const wrap=document.getElementById('wmWrap');
+  const drag=document.getElementById('wmDrag');
+  const reset=document.getElementById('wmReset');
+  if(!wrap||!drag) return;
+  let dragging=false, startX=0, startY=0, startLeft=0, startTop=0;
+
+  function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+  function move(e){
+    if(!dragging) return;
+    const dx=e.clientX-startX, dy=e.clientY-startY;
+    const maxX=window.innerWidth-wrap.offsetWidth;
+    const maxY=window.innerHeight-wrap.offsetHeight;
+    const left=clamp(startLeft+dx,0,Math.max(0,maxX));
+    const top=clamp(startTop+dy,0,Math.max(0,maxY));
+    wrap.style.left=left+'px';
+    wrap.style.top=top+'px';
+    wrap.style.right='auto';
+    wrap.style.bottom='auto';
+  }
+  function stop(){
+    if(!dragging) return;
+    dragging=false;
+    wrap.classList.remove('dragging');
+    try{wrap.releasePointerCapture?.(wrap._pointerId)}catch(_){}
+  }
+  drag.addEventListener('pointerdown',e=>{
+    dragging=true;
+    wrap.classList.add('dragging');
+    const r=wrap.getBoundingClientRect();
+    startX=e.clientX; startY=e.clientY; startLeft=r.left; startTop=r.top;
+    wrap._pointerId=e.pointerId;
+    try{wrap.setPointerCapture(e.pointerId)}catch(_){}
+    e.preventDefault();
+  });
+  wrap.addEventListener('pointermove',move);
+  wrap.addEventListener('pointerup',stop);
+  wrap.addEventListener('pointercancel',stop);
+  reset?.addEventListener('click',()=>{
+    wrap.style.left='auto';wrap.style.top='auto';wrap.style.right='14px';wrap.style.bottom='14px';
+    wrap.classList.remove('dragging');
+  });
+  window.addEventListener('resize',()=>{
+    if(!wrap.style.left) return;
+    const r=wrap.getBoundingClientRect();
+    wrap.style.left=clamp(r.left,0,window.innerWidth-wrap.offsetWidth)+'px';
+    wrap.style.top=clamp(r.top,0,window.innerHeight-wrap.offsetHeight)+'px';
+  });
+})();
+</script>
+</body>
+</html>

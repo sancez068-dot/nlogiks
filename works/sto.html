@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>СТО — СТО Одеса</title>
+<style>
+:root{--blue:#0757d8;--dark:#101317;--light:#f5f7fa;--muted:#68717d;--line:#e3e7ec;--red:#ef3d32}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--dark);font-family:Arial,Helvetica,sans-serif}
+button,input,select{font:inherit}
+a{text-decoration:none;color:inherit}
+.header{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:20}
+.logo{font-size:25px;font-weight:900;letter-spacing:-.06em}.logo i{font-style:normal;color:var(--blue)}
+.header-right{display:flex;align-items:center;gap:28px}.phone{font-weight:800}.header-btn{background:var(--blue);color:#fff;padding:13px 20px;border-radius:5px;font-weight:800}
+.hero{min-height:650px;background:linear-gradient(90deg,rgba(8,12,18,.87) 0%,rgba(8,12,18,.55) 48%,rgba(8,12,18,.1)),url("https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1800&q=85") center/cover;display:flex;align-items:center;color:#fff;padding:80px 8vw}
+.hero-content{max-width:760px}.tag{display:inline-block;background:var(--red);padding:8px 13px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+h1{font-size:clamp(48px,7vw,92px);line-height:.93;letter-spacing:-.065em;margin:0 0 24px}
+.hero p{font-size:20px;line-height:1.45;max-width:650px;color:#e8ebef}.hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.primary,.secondary{padding:16px 24px;border-radius:5px;font-weight:900;border:0}.primary{background:var(--blue);color:white}.secondary{background:#fff;color:#111}
+.container{width:min(1160px,88vw);margin:auto}.section{padding:85px 0}.eyebrow{color:var(--blue);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.section h2{font-size:clamp(38px,5vw,64px);letter-spacing:-.06em;line-height:.95;margin:12px 0 18px}.lead{color:var(--muted);max-width:700px;line-height:1.65}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}.service{border:1px solid var(--line);padding:28px;background:#fff;min-height:210px;transition:.2s}.service:hover{transform:translateY(-4px);box-shadow:0 15px 40px #17203312}.service-num{font-size:12px;color:var(--blue);font-weight:900}.service h3{font-size:23px;margin:42px 0 10px}.service p{color:var(--muted);font-size:14px;line-height:1.5}
+.band{background:var(--light);padding:75px 0}.advantages{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}.adv{background:#fff;padding:25px;border-top:3px solid var(--blue)}.adv b{font-size:31px;display:block;margin-bottom:12px}.adv strong{display:block;font-size:17px;margin-bottom:8px}.adv p{font-size:13px;line-height:1.5;color:var(--muted)}
+.price-table{margin-top:35px;border-top:1px solid var(--line)}.price-row{display:grid;grid-template-columns:1fr 160px;padding:19px 0;border-bottom:1px solid var(--line);font-weight:700}.price{text-align:right;color:var(--blue)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:45px}.step{border-top:3px solid var(--dark);padding:22px 18px 0 0;margin-right:22px}.step span{font-size:12px;color:var(--blue);font-weight:900}.step h3{margin:22px 0 8px}.step p{color:var(--muted);font-size:14px;line-height:1.5}
+.booking{background:var(--dark);color:#fff;padding:85px 0}.booking-grid{display:grid;grid-template-columns:1fr 430px;gap:70px;align-items:start}.booking h2{font-size:clamp(45px,6vw,78px);line-height:.92;letter-spacing:-.06em;margin:12px 0 20px}.booking .lead{color:#aeb6c0}.form{background:#fff;padding:28px;border-radius:6px;display:grid;gap:11px;color:#111}.form input,.form select{padding:15px;border:1px solid #dce1e6;outline:none;background:#fff}.form input:focus,.form select:focus{border-color:var(--blue)}.form button{border:0;background:var(--blue);color:#fff;padding:16px;font-weight:900}
+.footer{padding:25px 6vw;border-top:1px solid #272d35;background:var(--dark);color:#929ba6;display:flex;justify-content:space-between;font-size:12px}
+.watermark-wrap{position:fixed;z-index:100;right:14px;bottom:14px;display:flex;gap:5px;align-items:center;touch-action:none}.watermark{display:flex;gap:8px;align-items:center;background:#fff;color:#111;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:900;box-shadow:0 5px 25px #0003}.watermark svg{width:17px;height:17px}.wm-drag,.wm-reset{display:none;border:0;border-radius:50%;width:28px;height:28px;background:#fff}.watermark-wrap.dragging .wm-drag,.watermark-wrap.dragging .wm-reset{display:block}
+@media(max-width:800px){
+.header{padding:0 18px;height:68px}.header-right .phone{display:none}.header-btn{padding:10px 13px;font-size:12px}.hero{min-height:620px;padding:65px 6vw}.hero p{font-size:17px}.services,.advantages,.steps{grid-template-columns:1fr 1fr}.booking-grid{grid-template-columns:1fr;gap:35px}.section{padding:65px 0}.container{width:88vw}
+}
+@media(max-width:520px){
+.services,.advantages,.steps{grid-template-columns:1fr}.price-row{grid-template-columns:1fr 105px;font-size:14px}.hero{min-height:590px}.hero-actions a{width:100%;text-align:center}.form{padding:20px}.footer{padding:22px 18px;display:block;line-height:2}.watermark-wrap{right:9px;bottom:70px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+ <a class="logo" href="#">СТО<span>/</span>SERVICE</a>
+ <div class="header-right"><a class="phone" href="tel:+380670000000">+38 (067) 000-00-00</a><a class="header-btn" href="#booking">Записатися</a></div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-content">
+  <div class="tag">СТО в Одесі</div>
+  <h1>ДІАГНОСТИКА.<br>РЕМОНТ.<br>ВПЕВНЕНІСТЬ.</h1>
+  <p>Професійне обслуговування автомобілів: ходова, гальма, діагностика та планове ТО. Пояснюємо проблему до ремонту й погоджуємо вартість заздалегідь.</p>
+  <div class="hero-actions"><a class="primary" href="#booking">Записатися на сервіс →</a><a class="secondary" href="#services">Наші послуги</a></div>
+ </div>
+</section>
+
+<section class="section" id="services">
+ <div class="container">
+  <div class="eyebrow">Що ми робимо</div><h2>Все необхідне<br>в одному сервісі</h2>
+  <p class="lead">Від швидкої перевірки ходової до планового технічного обслуговування. Підбираємо обсяг робіт під реальний стан автомобіля.</p>
+  <div class="services">
+   <article class="service"><span class="service-num">01</span><h3>Діагностика ходової</h3><p>Перевірка підвіски, амортизаторів, кермового механізму та пов'язаних вузлів.</p></article>
+   <article class="service"><span class="service-num">02</span><h3>Комп'ютерна діагностика</h3><p>Зчитування помилок та перевірка електронних систем автомобіля.</p></article>
+   <article class="service"><span class="service-num">03</span><h3>ТО та мастила</h3><p>Заміна мастила й фільтрів та базовий контроль стану автомобіля.</p></article>
+   <article class="service"><span class="service-num">04</span><h3>Гальмівна система</h3><p>Діагностика та заміна колодок, дисків та інших компонентів.</p></article>
+   <article class="service"><span class="service-num">05</span><h3>Підвіска</h3><p>Заміна зношених деталей та усунення люфтів і сторонніх звуків.</p></article>
+   <article class="service"><span class="service-num">06</span><h3>Розвал-сходження</h3><p>Перевірка та регулювання геометрії коліс після ремонту або за потреби.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="container">
+  <div class="eyebrow">Чому СТО</div><h2>Сервіс без<br>непотрібних робіт</h2>
+  <div class="advantages">
+   <div class="adv"><b>01</b><strong>Діагностика спочатку</strong><p>Спочатку визначаємо причину, потім пропонуємо ремонт.</p></div>
+   <div class="adv"><b>02</b><strong>Прозора ціна</strong><p>Погоджуємо основні роботи до початку ремонту.</p></div>
+   <div class="adv"><b>03</b><strong>Сучасне обладнання</strong><p>Використовуємо професійні стенди та діагностичне обладнання.</p></div>
+   <div class="adv"><b>04</b><strong>Зручний запис</strong><p>Залишаєте заявку — менеджер погоджує зручний час.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="prices">
+ <div class="container">
+  <div class="eyebrow">Орієнтовна вартість</div><h2>Ціни на популярні<br>послуги</h2>
+  <div class="price-table">
+   <div class="price-row"><span>Діагностика ходової</span><span class="price">від 500 ₴</span></div>
+   <div class="price-row"><span>Діагностика на вібростенді</span><span class="price">від 800 ₴</span></div>
+   <div class="price-row"><span>Заміна мастила</span><span class="price">від 500 ₴</span></div>
+   <div class="price-row"><span>Заміна передніх колодок</span><span class="price">від 800 ₴</span></div>
+   <div class="price-row"><span>Розвал-сходження</span><span class="price">від 900 ₴</span></div>
+  </div>
+  <p class="lead" style="margin-top:15px;font-size:12px">* Демонстраційні ціни для макета. Остаточна вартість залежить від автомобіля та переліку робіт.</p>
+ </div>
+</section>
+
+<section class="band">
+ <div class="container">
+  <div class="eyebrow">Як це працює</div><h2>Від заявки<br>до готового авто</h2>
+  <div class="steps">
+   <div class="step"><span>01 / ЗАПИС</span><h3>Залишаєте заявку</h3><p>Вказуєте авто та коротко описуєте проблему.</p></div>
+   <div class="step"><span>02 / ОГЛЯД</span><h3>Знаходимо причину</h3><p>Майстер проводить необхідну діагностику.</p></div>
+   <div class="step"><span>03 / ПОГОДЖЕННЯ</span><h3>Погоджуємо ремонт</h3><p>Ви отримуєте перелік робіт та орієнтовну ціну.</p></div>
+   <div class="step"><span>04 / ГОТОВО</span><h3>Забираєте авто</h3><p>Пояснюємо, що було зроблено та що варто контролювати далі.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="booking" id="booking">
+ <div class="container booking-grid">
+  <div><div class="eyebrow" style="color:#4d91ff">Запис на сервіс</div><h2>ПЕРЕВІРТЕ<br>АВТО ВЧАСНО.</h2><p class="lead">Залиште контакти — менеджер зв'яжеться з вами та підбере зручний час.</p></div>
+  <form class="form" onsubmit="event.preventDefault();alert('Демо-заявку створено.');">
+   <input required placeholder="Ваше ім'я"><input required placeholder="Номер телефону"><input placeholder="Марка та модель авто"><select><option>Оберіть послугу</option><option>Діагностика ходової</option><option>ТО</option><option>Гальма</option><option>Комп'ютерна діагностика</option></select><button>ЗАПИСАТИСЯ →</button><small>Демо-форма: дані нікуди не надсилаються.</small>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer class="footer"><span>СТО · ODESA</span><span>Пн—Сб · 09:00—19:00</span></footer>
+
+<div class="watermark-wrap" id="wmWrap">
+ <a class="watermark" id="watermark" href="https://t.me/nlogiks" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M21.5 3.5 18.2 20c-.25 1.17-.9 1.45-1.82.9l-5.05-3.72-2.44 2.35c-.27.27-.5.5-1.03.5l.37-5.15 9.37-8.47c.41-.37-.09-.58-.64-.2L5.37 13.65.38 12.09c-1.08-.34-1.1-1.08.23-1.57L20.1 3.1c.92-.34 1.73.2 1.4.4Z" fill="currentColor"/></svg>
+  <span>Замовити — @nlogiks</span>
+ </a><button class="wm-drag" id="wmDrag">↕</button><button class="wm-reset" id="wmReset">↺</button>
+</div>
+<script>
+const w=document.getElementById('wmWrap'),d=document.getElementById('wmDrag'),r=document.getElementById('wmReset');let drag=false,sx,sy,ox,oy;
+d.onpointerdown=e=>{drag=true;w.classList.add('dragging');w.setPointerCapture(e.pointerId);let b=w.getBoundingClientRect();sx=e.clientX;sy=e.clientY;ox=b.left;oy=b.top};
+d.onpointermove=e=>{if(!drag)return;let x=Math.max(4,Math.min(innerWidth-w.offsetWidth-4,ox+e.clientX-sx)),y=Math.max(4,Math.min(innerHeight-w.offsetHeight-4,oy+e.clientY-sy));w.style.left=x+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto'};
+d.onpointerup=()=>drag=false;r.onclick=()=>{w.style.cssText='';w.classList.remove('dragging')};
+</script>
+</body>
+</html>
